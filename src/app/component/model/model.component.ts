@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -11,14 +11,18 @@ import { ApiService } from 'src/app/services/api.service';
 export class ModelComponent {
   filterForm: any;
   allbrandcategory:any;
+
+  brands: string[] = []; 
+  categories: string[] = []; 
+
   constructor(public dialog: MatDialog,public dialogRef: MatDialogRef<ModelComponent>,
-    private api: ApiService
+    private api: ApiService,private fb: FormBuilder,
     
   ) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ModelComponent, {
-      width: '250px',  // You can configure the dialog width and other options
+      width: '250px',  
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -32,18 +36,12 @@ export class ModelComponent {
 
 
   ngOnInit() {
-    // Initialize the FormGroup with FormControls for each checkbox
-    this.filterForm = new FormGroup({
-      oppo: new FormControl(''),
-      tecno: new FormControl(''),
-      goldenMark: new FormControl(''),
-      hardware: new FormControl(''),
-      electronic: new FormControl(''),
-
-    });
-   this.getBrandcategory()
+    this.initializeForm()  
+     this.getBrandcategory()
     }
-
+    initializeForm() {
+      this.filterForm = this.fb.group({});
+    }
   filter(): void {
     console.log("Form Values: ", this.filterForm.value);
     // const selectedBrands = [];
@@ -65,6 +63,24 @@ export class ModelComponent {
     this.api.getBrandcategory().subscribe((res:any)=>{
       this.allbrandcategory=res
       console.log("res",res)
+      this.extractDynamicValues(res);
     })
+  }
+  extractDynamicValues(data: any[]) {
+    const brandSet = new Set<string>();
+    const categorySet = new Set<string>();
+
+    // Extract unique brands and categories
+    data.forEach(item => {
+      if (item.brand) brandSet.add(item.brand.toLowerCase());
+      if (item.category) categorySet.add(item.category.toLowerCase());
+    });
+
+    this.brands = Array.from(brandSet);
+    this.categories = Array.from(categorySet);
+
+    // Dynamically add form controls for checkboxes
+    this.brands.forEach(brand => this.filterForm.addControl(brand, this.fb.control(false)));
+    this.categories.forEach(category => this.filterForm.addControl(category, this.fb.control(false)));
   }
 }

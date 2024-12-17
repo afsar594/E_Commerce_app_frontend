@@ -1,6 +1,32 @@
-<h2 mat-dialog-title>Popup Dialog</h2>
+<h2 mat-dialog-title>Popup Filter</h2>
 <div mat-dialog-content>
-  <form [formGroup]="filterForm"> <!-- Bind formGroup to the form -->
+  <form [formGroup]="filterForm">
+    <!-- Dynamic Brands -->
+    <div class="row">
+      <h1>Brand</h1>
+    </div>
+    <div class="row">
+      <div class="col" *ngFor="let brand of brands">
+        {{ brand | titlecase }} 
+        <input type="checkbox" [formControlName]="brand" />
+      </div>
+    </div>
+
+    <!-- Dynamic Categories -->
+    <div class="row">
+      <h1>Category</h1>
+    </div>
+    <div class="row">
+      <div class="col" *ngFor="let category of categories">
+        {{ category | titlecase }}
+        <input type="checkbox" [formControlName]="category" />
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- <div mat-dialog-content>
+  <form [formGroup]="filterForm"> 
 
     <div class="row off-set-3"><h1>Brand</h1></div>
     <div class="row">
@@ -26,7 +52,7 @@
     </div>
 
   </form>
-</div>
+</div> -->
 
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
