@@ -1,0 +1,100 @@
+<app-header></app-header>
+
+<section class="vh-100" style="background-color: #fdccbc;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <p>
+            <span class="h2">Shopping Cart </span>
+            <span class="h4">({{ list.length }} {{ list.length === 1 ? 'item' : 'items' }} in your cart)</span>
+          </p>
+            
+          <div class="card mb-4">
+            <div class="card-body p-4">
+              <div class="col-md-1" style="margin-left: 1163px;">
+                <a routerLink="/cart" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+                  <img src="assets/delete.png" (click)="delete()" alt="Cart" style="width: 46px; height: 36px; margin-right: 5px;">
+                </a>
+              </div>
+              <div class="row align-items-center" *ngFor="let data of list">
+               
+                <div class="col-md-2">
+                  <img src="{{data.filePath}}"
+                    class="img-fluid" alt="Generic placeholder image" style="width: 158px; height: 150px;">
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Name</p>
+                    <p class="lead fw-normal mb-0">{{data.name}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Color</p>
+                    <p class="lead fw-normal mb-0"><i class="fas fa-circle me-2" style="color: #fdd8d2;"></i>
+                      pink rose</p>
+                  </div>
+                </div>
+                <div class="col-md-1 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Quantity</p>
+                    <p class="lead fw-normal mb-0">{{data.qty}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Price</p>
+                    <p class="lead fw-normal mb-0">{{data.price}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Total</p>
+                    <p class="lead fw-normal mb-0">{{data.totalPrice}}</p>
+                  </div>
+                </div>
+                <div class="col-md-1 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Remove</p>
+                    <div class="col-md-1 d-flex justify-content-center lead fw-normal mb-0">
+                      <div>
+                        <input style="height: 32px; width: 23px; margin-left: 40px;"
+                          type="checkbox" 
+                          id="select-{{data.name}}" 
+                          [(ngModel)]="data.selected" 
+                          (change)="onCheckboxChange(data)" />
+                        <label for="select-{{data.name}}" class="visually-hidden">Select {{data.name}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+                
+                
+              </div>
+  
+            </div>
+          </div>
+  
+          <div class="card mb-5">
+            <div class="card-body p-4">
+  
+              <div class="float-end">
+                <p class="mb-0 me-5 d-flex align-items-center">
+                  <span class="small text-muted me-2">Order total:</span> <span
+                    class="lead fw-normal">{{totalPrice?.toFixed(2)}}</span>
+                </p>
+              </div>
+  
+            </div>
+          </div>
+  
+          <div class="d-flex justify-content-end">
+            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-light btn-lg me-2" (click)="BacktoItem()">Continue shopping</button>
+            <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg" (click)="payment()">Buy Now</button>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </section>

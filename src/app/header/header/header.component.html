@@ -1,0 +1,33 @@
+<mat-toolbar color="primary"  >
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+    <nav>
+      <ul style="list-style-type: none; margin: 0; padding: 0; display: flex;">
+        <li style="margin-right: 20px;"><a href="#home">Home</a></li>
+        <li style="margin-right: 20px;"><a href="#news">News</a></li>
+        <!-- <li style="margin-right: 20px;"><a routerLink="/login">Login</a></li>
+        <li style="margin-right: 20px;"><a routerLink="/register">Register</a></li> -->
+        <li style="margin-right: 20px;"><a routerLink="/item">Item</a></li>
+        <li><a routerLink="/item/upload">Upload</a></li>
+      </ul>
+    </nav>
+  
+    <!-- Move the cart div here to the left side -->
+    <div style="display: flex; align-items: center;  margin-left: 918px;">
+      <a routerLink="/cart" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+        <span *ngIf="receivedData > 0" style="background-color: red; color: white; border-radius: 50%; padding: 0px 4px; margin-left: 5px; margin-bottom: 20px;">
+          {{ receivedData }}
+        </span>
+        <img src="assets/trolley.png" alt="Cart" style="width: 46px; height: 36px; margin-right: 5px;">
+      </a>
+    </div>
+    <div style="display: flex; align-items: center; ">
+      <a (click)="logout()" style="text-decoration: none; color: inherit; display: flex; align-items: center;">
+        <img src="assets\power-on.png" alt="Cart" style="width: 46px; height: 36px; margin-right: 5px; border-radius: 50%; margin-left: 19px;">
+      </a>
+    </div>
+  
+    
+  </header>
+  
+  
+</mat-toolbar>

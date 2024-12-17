@@ -1,0 +1,64 @@
+.all {
+    display: flex;
+    background-color: rgb(255, 240, 240);
+    max-width: 586px;
+    margin-top: 30px;
+  }
+  
+  .form-container {
+    margin: 20px;
+  }
+  
+  .file-upload-container {
+    margin-top: 20px;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .padding {
+    padding-top: 10px;
+  }
+  
+  .input {
+    height: 30px;
+    width: 220px;
+  }
+  
+  .textarea {
+    width: 220px;
+    margin-top: 10px;
+    margin-left: 10px;
+  }
+  
+  .image-preview {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .image-preview img {
+    max-width: 243px; /* Limit the image width */
+    height:  173px; /* Maintain aspect ratio */
+    border: 1px solid #ccc; /* Optional styling */
+    border-radius: 4px; /* Optional styling */
+  }
+  .img{
+    margin-top: 115px;
+
+  }
+  
+  button {
+    background-color: blue; 
+    color: white;
+    margin-left: 20px;
+    width: 200px;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: green;
+    color: white;
+  }
+  
+  

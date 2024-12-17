@@ -1,0 +1,66 @@
+<app-header></app-header>
+
+<form [formGroup]="itemForm">
+    <div class="container all">
+        <div class="container form-container">
+          <div class="row">
+            <div class="col text-center">
+              <b>Entry Form</b>
+            </div>
+          </div>
+          <div class="main">
+            <div class="row">
+              <div class="col pre padding">
+                Item Name
+                <input class="input" placeholder="Text Here" type="text" formControlName="Name">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col padding pre">
+                Item Price
+                <input class="input" placeholder="Text Here" type="number" formControlName="Price">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col pre padding">
+                Item Brand
+                <input class="input" placeholder="Text Here" type="text" formControlName="Brand">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col pre padding">
+                Category
+                <input class="input" placeholder="Text Here" type="text" formControlName="Category">
+              </div>
+            </div>
+            <div class="row padding">
+              <div class="col padding pre">Item Detail</div>
+              <textarea placeholder="Text Here" class="textarea" formControlName="Description"></textarea>
+            </div>
+          </div>
+          <div class="row padding">
+            <div class="col offset-5">
+                <button type="button" class="text-color  btn" (click)="onUpload()">Upload</button>
+            </div>
+        </div>
+        </div>
+      
+        <div class="container file-upload-container img">
+          <div class="row">
+            <div class="col padding pre">
+              <div *ngIf="selectedFileBase64" class="image-preview">
+                <img [src]="selectedFileBase64 || 'assets/logo.webp'" alt="Image Preview">
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col padding pre ">
+              Item file
+              <input class="input" type="file" (change)="onFileSelected($event)">
+            </div>
+          </div>
+        </div>
+     
+      </div>
+      
+</form>

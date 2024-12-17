@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Popup Dialog</h2>
+<div mat-dialog-content>
+  <form [formGroup]="filterForm"> <!-- Bind formGroup to the form -->
+
+    <div class="row off-set-3"><h1>Brand</h1></div>
+    <div class="row">
+      <div class="col">
+        OPPO <input type="checkbox" formControlName="oppo">
+      </div>
+      <div class="col">
+        Tecno <input type="checkbox" formControlName="tecno">
+      </div>
+      <div class="col">
+        GoldenMark <input type="checkbox" formControlName="goldenMark">
+      </div>
+    </div>
+
+    <div class="row"><h1>Category</h1></div>
+    <div class="row">
+      <div class="col">
+        Hardware <input type="checkbox" formControlName="hardware">
+      </div>
+      <div class="col">
+        Electronic <input type="checkbox" formControlName="electronic">
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-button (click)="filter()">Filter</button> <!-- Call filter method -->
+</div>
