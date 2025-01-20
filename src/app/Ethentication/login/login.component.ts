@@ -11,6 +11,7 @@ import { ToastServiceService } from 'src/app/services/toast-service.service';
 })
 export class LoginComponent {
   loginForm: any
+  isLoggedIn: boolean=false;
 
   constructor(private fb: FormBuilder,
               public api:ApiService,
@@ -58,6 +59,6 @@ export class LoginComponent {
       this.Notification.showNotification('Please fill out the form correctly.', 'Close');
     }
   }
-  
+
   
 }

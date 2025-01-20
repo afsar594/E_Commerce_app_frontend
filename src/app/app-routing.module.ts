@@ -8,6 +8,7 @@ import { ItemUploadFormComponent } from './component/item-upload-form/item-uploa
 import { CartComponent } from './component/cart/cart.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { ModelComponent } from './component/model/model.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
@@ -17,16 +18,24 @@ const routes: Routes = [
     path:'register',component:RegisterComponent
   },
   {
-    path:'item',component:ItemPageComponent
+    path:'item',component:ItemPageComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path:'item/detail',component:ItemDetailPageComponent
+    path:'item/detail',component:ItemDetailPageComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path:'item/upload',component:ItemUploadFormComponent
+    path:'item/upload',component:ItemUploadFormComponent,
+    canActivate: [AuthGuard]
+
   },
   {
-    path:'cart',component:CartComponent
+    path:'cart',component:CartComponent,
+    canActivate: [AuthGuard]
+
+
   },
   {
     path:'payment',component:PaymentComponent

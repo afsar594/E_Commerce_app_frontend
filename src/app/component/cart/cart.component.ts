@@ -84,5 +84,26 @@ onCheckboxChange(rowData: any) {
       });
     }
   }
+  incrementQty(item: any): void {
+    item.qty++;
+    this.updateTotalPrice(item);
+  }
+  
+  decrementQty(item: any): void {
+    if (item.qty > 1) { // Prevent quantity from going below 1
+      item.qty--;
+      this.updateTotalPrice(item);
+    }
+  }
+  
+  updateTotalPrice(item: any): void {
+    item.totalPrice = item.qty * item.price;
+    this.calculateOrderTotal();
+  }
+  
+  calculateOrderTotal(): void {
+    this.totalPrice = this.list.reduce((sum: any, item: { totalPrice: any; }) => sum + item.totalPrice, 0);
+  }
+  
   
 }

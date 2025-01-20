@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
 import { DateShareService } from 'src/app/services/date-share.service';
 
 @Component({
@@ -11,8 +12,7 @@ export class HeaderComponent {
   cartItemCount=10
   receivedData: any;
 
-  constructor(private dataService: DateShareService,
-   private router:Router
+  constructor(private dataService: DateShareService,private api:ApiService,
   ) {}
 
   ngOnInit() {
@@ -22,9 +22,6 @@ export class HeaderComponent {
     });
   }
   logout(){
-    localStorage.removeItem('UserId');
-    this.router.navigate(['']);
-
-
+    this.api.logout()
   }
 }
