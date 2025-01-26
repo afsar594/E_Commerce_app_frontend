@@ -9,6 +9,7 @@ import { DateShareService } from 'src/app/services/date-share.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
+  showReport:boolean=false
   Selecteditem: any;
   list:any
   totalPrice: any;
@@ -35,6 +36,7 @@ export class CartComponent {
    this.getAllItemFromCArt()
   }
   payment(){
+    this.showReport=true
     this.router.navigate(['payment' ]);
   }
   BacktoItem(){
@@ -44,7 +46,6 @@ export class CartComponent {
     this.api.getAllItemsFromCART().subscribe((res)=>{
       if (Array.isArray(res) && this.UserId != null) {
         this.list = res.filter(item => item.userId === Number(this.UserId));
-
     } else {
     }
     
@@ -104,6 +105,6 @@ onCheckboxChange(rowData: any) {
   calculateOrderTotal(): void {
     this.totalPrice = this.list.reduce((sum: any, item: { totalPrice: any; }) => sum + item.totalPrice, 0);
   }
-  
+ 
   
 }

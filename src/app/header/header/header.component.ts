@@ -11,11 +11,14 @@ import { DateShareService } from 'src/app/services/date-share.service';
 export class HeaderComponent {
   cartItemCount=10
   receivedData: any;
+  UserId: any;
 
   constructor(private dataService: DateShareService,private api:ApiService,
   ) {}
 
   ngOnInit() {
+    this.UserId = Number(localStorage.getItem('UserId'));
+    console.log(this.UserId);
     // Subscribe to the currentData observable to get the updated data
     this.dataService.currentData.subscribe(data => {
       this.receivedData = data; // Update receivedData when data changes

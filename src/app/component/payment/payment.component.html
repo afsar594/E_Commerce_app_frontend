@@ -1,49 +1,114 @@
 <div class="body">
-<div class="container main">
-    <button (click)="navigate()"><img src="src/assets/arrow icon.png" alt="Arrow Icon" style="height: 30px; width: 30px;padding-top: 5px;"></button>
-    <div class="row">
-        <div class="col"><h2>BILLING ADDRESS</h2></div>
-        <div class="col"><h2>PAYMENT</h2></div>
-    </div>
-    <div class="row">
-        <div class="col">Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="input" placeholder="Nouman" type="text"></div>
-        <div class="col">
-            Accepted Card &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <form [formGroup]="billingForm">
+      <div class="container main">
+        <button (click)="navigate()">
+          <img src="src/assets/arrow icon.png" alt="Arrow Icon" style="height: 30px; width: 30px; padding-top: 5px;">
+        </button>
+        <div class="row">
+          <div class="col"><h2>BILLING ADDRESS</h2></div>
+          <div class="col"><h2>PAYMENT</h2></div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Name <input formControlName="name" class="input" placeholder="Nouman" type="text">
+          </div>
+          <div class="col">
+            Accepted Card 
             <img class="img" src="assets/card1.jpg" alt="Accepted Card 1">&nbsp;&nbsp;
             <img class="img" src="assets/card2.jpg" alt="Download Card">&nbsp;&nbsp;
             <img class="img" src="assets/card3.jpg" alt="Image 1">&nbsp;&nbsp;
             <img class="img" src="assets/card4.jpg" alt="Image 2">
           </div>
-          
-    </div>
-    <div class="row">
-        <div class="col">Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="input" placeholder="Example@Example.com" type="text"></div>
-        <div class="col">Name On Card &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input  placeholder="ATM Card" class="input" type="text"></div>
-    </div>
-    <div class="row">
-        <div class="col">Address&nbsp;&nbsp;&nbsp;&nbsp; <input class="input" placeholder="Room-Street-Locality" type="text"></div>
-        <div class="col">Credit Card No &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input  placeholder="1111-2222-3333-4444" class="input" type="number"></div>
-    </div>
-    <div class="row">
-        <div class="col">City&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input class="input" placeholder="Burewala" type="text"></div>
-        <div class="col">Exp Month  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input placeholder="January"  class="input" type="month"></div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                <div style="width: 50px; margin-left: -13px;" class="col">State <input placeholder="Pakistan" class="put" type="text"></div>
-                <div style="margin-left: -100px;" class="col">Zip Code <input placeholder="123 456" class="put" type="number"></div>
-            </div>
         </div>
-        <div class="col">
-            <div class="row">
-                <div class="col">Exp Year &nbsp;&nbsp;  <input placeholder="2022" class="put" type="number"></div>
-                <div class="col">CW  &nbsp;  <input placeholder="1234" style="height: 33px; width: 143px;" type="number"></div>
-            </div>
+        <div class="row">
+          <div class="col">
+            Email <input formControlName="email" class="input" placeholder="Example@Example.com" type="email">
+          </div>
+          <div class="col">
+            Name On Card <input formControlName="nameOnCard" class="input" placeholder="ATM Card" type="text">
+          </div>
         </div>
-    </div>
-    <div style="padding: 0px 0px 15px 0px;" class="row">
-        <button  class="btn btn-primary">Proceed To Chackout</button>
-    </div>
-</div>
-</div>
+        <div class="row">
+          <div class="col">
+            Address <input formControlName="address" class="input" placeholder="Room-Street-Locality" type="text">
+          </div>
+          <div class="col">
+            Credit Card No <input formControlName="creditCardNo" class="input" placeholder="1111-2222-3333-4444" type="text">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            City <input formControlName="city" class="input" placeholder="Burewala" type="text">
+          </div>
+          <div class="col">
+            Exp Month <input formControlName="expMonth" class="input" placeholder="January" type="text">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                State <input formControlName="state" class="put" placeholder="Pakistan" type="text">
+              </div>
+              <div class="col">
+                Zip Code <input formControlName="zipCode" class="put" placeholder="123 456" type="text">
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col">
+                Exp Year <input formControlName="expYear" class="put" placeholder="2022" type="text">
+              </div>
+              <div class="col">
+                CW <input formControlName="cw" class="put" placeholder="1234" type="text">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 0px 0px 15px 0px;" class="row">
+          <button type="submit" (click)=" CheckOut()" class="btn btn-primary">Proceed To Checkout</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+<div id="print-section" *ngIf="showReport">
+    <h1>Report</h1>
+    <div>
+        <!-- User Details Section -->
+        <div style="margin-bottom: 20px; border: 1px solid #ddd; padding: 10px;">
+          <h3>User Details</h3>
+          <p><strong>Name:</strong> {{ billingForm.controls.name.value }}</p>
+          <p><strong>Email:</strong> {{ billingForm.controls.email.value }}</p>
+          <p><strong>Address:</strong> {{ billingForm.controls.address.value }}</p>
+          <p><strong>State:</strong> {{ billingForm.controls.state.value }}</p>
+        </div>
+      
+        <!-- Table Section -->
+        <table border="1" style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <!-- <th>Color</th> -->
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of list; index as i">
+              <td>{{ i + 1 }}</td>
+              <td>{{ data.name }}</td>
+              <!-- <td>{{data.color}}</td> -->
+              <td>{{ data.qty }}</td>
+              <td>{{ data.price }}</td>
+              <td>{{ data.totalPrice }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+  </div>
+  

@@ -12,4 +12,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: red !important; /* Error background color */
     color: white; /* Text color */
   }
+/* Hide buttons and other elements when printing */
+@media print {
+  button {
+    display: none;
+  }
+
+  table {
+    width: 100%;
+    border: 1px solid black;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+}
   
