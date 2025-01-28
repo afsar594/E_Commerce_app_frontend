@@ -24,6 +24,7 @@ export class CartComponent {
   ngOnInit(): void {
     this.UserId = localStorage.getItem('UserId');
     console.log(this.UserId); 
+    
     // Initialize the list if it hasn't been already
     this.list = this.list || []; // Ensure it's an array
   
@@ -37,7 +38,9 @@ export class CartComponent {
   }
   payment(){
     this.showReport=true
-    this.router.navigate(['payment' ]);
+    // this.router.navigate(['payment' ]);
+    const dataToPass = {data: this.list};
+    this.router.navigate(['payment'], { state: dataToPass });
   }
   BacktoItem(){
     this.router.navigate(['item' ]);

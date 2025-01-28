@@ -12,9 +12,17 @@ export class PaymentComponent implements OnInit {
   list: Array<any> = [];
 
   billingForm:any;
+  Selecteditem: any;
+  bankDetails = {
+    name: 'ABC Bank',
+    accountNumber: '1234567890',
+    ifsc: 'ABC123456',
+    branch: 'Downtown Branch',
+  };
   constructor(private route: ActivatedRoute,public router:Router,private fb: FormBuilder) {}
   ngOnInit(): void {
-
+    let data = history.state; 
+    this.Selecteditem=data.data
     this.billingForm = this.fb.group({
       name: ['', Validators.required],
       email: [''],
@@ -49,7 +57,6 @@ export class PaymentComponent implements OnInit {
       this.printReport();
   
       // Log the updated list
-      console.log("Updated List:", this.list);
     } else {
       console.log("Form is invalid. Please fill in all required fields.");
     }
@@ -65,4 +72,8 @@ export class PaymentComponent implements OnInit {
     document.body.innerHTML = originalContents;
     window.location.reload(); // Refresh the page to restore the original content
   }
+  calculateGrandTotal(): number {
+    return this.Selecteditem.reduce((sum: any, item: { totalPrice: any; }) => sum + item.totalPrice, 0);
+  }
+  
 }
