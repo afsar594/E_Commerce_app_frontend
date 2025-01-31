@@ -34,7 +34,7 @@
 </div>
 <div class="main">
 <div class="card" *ngFor="let data of list">
-      <mat-card class="example-card" appearance="outlined" >
+      <mat-card class="example-card" appearance="outlined" *ngIf="data.quantity>0" >
         <mat-card-header>
           <!-- <div mat-card-avatar class="example-header-image"></div> -->
           <mat-card-title>{{data?.name}}</mat-card-title>

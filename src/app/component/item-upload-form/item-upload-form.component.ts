@@ -16,15 +16,16 @@ export class ItemUploadFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private api: ApiService,
-    private Notification:ToastServiceService
-  ) {}
+    private Notification: ToastServiceService
+  ) { }
 
   ngOnInit(): void {
     this.itemForm = this.fb.group({
       Name: ['', Validators.required],
       Price: ['', Validators.required],
       Brand: ['', Validators.required],
-      Category:['', Validators.required],
+      Category: ['', Validators.required],
+      quantity: ['', Validators.required],
       Description: [''],
       FilePath: ['']
     });
@@ -44,7 +45,7 @@ export class ItemUploadFormComponent implements OnInit {
       reader.readAsDataURL(this.selectedFile);
     }
   }
-  
+
   onUpload(): void {
     if (!this.itemForm.valid) {
       console.error('Form is invalid');
@@ -52,27 +53,20 @@ export class ItemUploadFormComponent implements OnInit {
     }
 
     if (this.selectedFileBase64) {
-      console.log('Form Data:', this.itemForm.value);
-      console.log('Selected File (Base64):', this.selectedFileBase64);
-
-      // Append the base64 image to the form data
       this.itemForm.patchValue({
         FilePath: this.selectedFileBase64,
       });
-console.log("form value",this.itemForm.value)
-
-this.api.saveItem(this.itemForm.value).subscribe({
-  next: (res) => {
-    if (res) {
-      this.Notification.showNotification('Data saved successfully!', 'Close'); 
-       }
-    console.log("Response:", res);
-  },
-  error: (err) => {
-    // this.Notification.showError('Failed to save data!', 'Error');
-    console.error("Error:", err);
-  }
-});
+      this.api.saveItem(this.itemForm.value).subscribe({
+        next: (res) => {
+          if (res) {
+            this.Notification.showNotification('Data saved successfully!', 'Close');
+          }
+        },
+        error: (err) => {
+          // this.Notification.showError('Failed to save data!', 'Error');
+          console.error("Error:", err);
+        }
+      });
     }
   }
 }
