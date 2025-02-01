@@ -9,6 +9,7 @@ import { CartComponent } from './component/cart/cart.component';
 import { PaymentComponent } from './component/payment/payment.component';
 import { ModelComponent } from './component/model/model.component';
 import { AuthGuard } from './services/auth.guard';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,11 @@ const routes: Routes = [
   },
   {
     path:'payment',component:PaymentComponent,
+    canActivate: [AuthGuard]
+
+  },
+  {
+    path:'dashboard',component:DashboardComponent,
     canActivate: [AuthGuard]
 
   },

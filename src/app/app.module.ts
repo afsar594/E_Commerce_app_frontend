@@ -19,7 +19,8 @@ import { LoaderInterceptor } from './services/loader.interceptor';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { PaymentComponent } from './component/payment/payment.component';
 import { ModelComponent } from './component/model/model.component';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './component/dashboard/dashboard.component'; 
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     CartComponent,
     PaymentComponent,
     ModelComponent,
+    DashboardComponent,
     
   ],
   imports: [
